@@ -33,17 +33,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
   },
-  button: {
-    width: 56,
-    height: 56,
-    borderRadius: 4,
-    backgroundColor: "#31cf67",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+  list: {
+    flex: 1,
+    gap: 8,
   },
 });
