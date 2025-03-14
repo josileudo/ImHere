@@ -37,4 +37,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     gap: 8,
   },
+  listEmptyText: {
+    color: "#fff",
+    fontSize: 14,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
 });

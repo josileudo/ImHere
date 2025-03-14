@@ -34,15 +34,28 @@ export const Home = () => {
         <Button title="+" onPress={handleParticipantAdd} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {participants.map((participants: string) => (
+      <FlatList
+        data={participants}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
           <Participant
-            key={participants}
-            name={participants}
-            onRemove={() => handleParticipantRemove(participants)}
+            key={item}
+            name={item}
+            onRemove={() => handleParticipantRemove(item)}
           />
-        ))}
-      </ScrollView>
+        )}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmptyText}>
+            Ninguém chegou no evento ainda? Adicione participantes a sua lista
+            de presença.
+          </Text>
+        )}
+      />
     </View>
   );
 };
+
+// ==== OBS ====
+/* Podemos usar o FlatList para renderizar uma lista de itens */
+/* Podemos usar o ScrollView para renderizar uma lista de itens */
