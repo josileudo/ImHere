@@ -1,4 +1,11 @@
-import { FlatList, ScrollView, Text, TextInput, View } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+  Alert,
+} from "react-native";
 import { styles } from "./styles";
 import { Participant } from "../../components/Participant";
 import { Button } from "../../components/Button";
@@ -12,11 +19,29 @@ export const Home = () => {
   ]);
 
   function handleParticipantAdd() {
+    if (participants.includes("Josileudo")) {
+      return Alert.alert(
+        "Participante existe",
+        "Já existe um participante na lista com esse nome."
+      );
+    }
     console.log("Clicado");
   }
 
   function handleParticipantRemove(id: string) {
-    console.log("Removed " + id);
+    Alert.alert("Remover", `Remover o participante ${id}?`, [
+      {
+        text: "Sim",
+        onPress: () => Alert.alert("Deletado"),
+        // setParticipants((prevState) =>
+        //   prevState.filter((participant) => participant !== id)
+        // ),
+      },
+      {
+        text: "Não",
+        style: "cancel",
+      },
+    ]);
   }
 
   return (
