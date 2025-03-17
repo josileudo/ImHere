@@ -15,7 +15,7 @@ export const Button = ({ title, type, onPress }: ButtonProps) => {
       activeOpacity={0.9}
       onPress={onPress}
     >
-      <Text style={styles().buttonText}>{title}</Text>
+      <Text style={styles().buttonText}>{title ?? ""}</Text>
     </TouchableOpacity>
   );
 };

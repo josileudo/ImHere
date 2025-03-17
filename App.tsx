@@ -1,4 +1,4 @@
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { Home } from "./src/screens/Home";
 
 export const App = () => {
@@ -9,7 +9,7 @@ export const App = () => {
         backgroundColor="transparent"
         translucent
       />
-      <Home />;
+      <Home />
     </>
   );
 };

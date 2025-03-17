@@ -5,6 +5,7 @@ import {
   TextInput,
   View,
   Alert,
+  TextInputProps,
 } from "react-native";
 import { styles } from "./styles";
 import { Participant } from "../../components/Participant";
@@ -12,30 +13,31 @@ import { Button } from "../../components/Button";
 import { useState } from "react";
 
 export const Home = () => {
-  const [participants, setParticipants] = useState<string[]>([
-    "Josileudo",
-    "Lucas",
-    "Luiz Marcelo",
-  ]);
+  const [participants, setParticipants] = useState<string[]>(["João"]);
+  const [participantName, setParticipantsName] = useState<string>("");
 
   function handleParticipantAdd() {
-    if (participants.includes("Josileudo")) {
+    if (participants.includes(participantName)) {
       return Alert.alert(
-        "Participante existe",
+        `Participante ${participantName} existe`,
         "Já existe um participante na lista com esse nome."
       );
     }
-    console.log("Clicado");
+
+    setParticipants((prevState) => [...prevState, participantName]);
+    setParticipantsName("");
   }
 
   function handleParticipantRemove(id: string) {
     Alert.alert("Remover", `Remover o participante ${id}?`, [
       {
         text: "Sim",
-        onPress: () => Alert.alert("Deletado"),
-        // setParticipants((prevState) =>
-        //   prevState.filter((participant) => participant !== id)
-        // ),
+        onPress: () => {
+          setParticipants((prevState) => {
+            return prevState.filter((participant) => participant !== id);
+          });
+          Alert.alert("Deletado");
+        },
       },
       {
         text: "Não",
@@ -54,6 +56,8 @@ export const Home = () => {
           style={styles.eventInput}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChangeText={setParticipantsName}
+          value={participantName}
         />
 
         <Button title="+" onPress={handleParticipantAdd} />
